@@ -32,7 +32,7 @@ export function DailyRituals() {
         <SectionHead
           eyebrow="Today"
           title="The daily ritual"
-          lead="Tick each block as you finish it. Three or more keeps the streak alive. German is sacred."
+          lead="Tick each block as you finish it. Three or more keeps the streak alive. French is sacred, it is the PR key."
         />
 
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">

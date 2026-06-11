@@ -43,7 +43,7 @@ export function App() {
         <Timeline />
       </main>
       <footer className="border-t px-6 py-14 text-center md:px-10">
-        <p className="font-display text-2xl">Eleven applications. One year. Three offers.</p>
+        <p className="font-display text-2xl">Eleven applications. French to B2. Then PR.</p>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
           Built for Shaurya. Open it daily. Tick one block. Repeat.
         </p>

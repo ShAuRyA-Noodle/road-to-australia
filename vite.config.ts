@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["icon.svg"],
       manifest: {
-        name: "Road to Germany",
-        short_name: "Germany",
-        description: "Shaurya's road to Germany. One compass for the whole journey.",
+        name: "Road to Canada",
+        short_name: "Canada",
+        description: "Shaurya's road to Canada. One compass for the whole journey.",
         theme_color: "#17111A",
         background_color: "#17111A",
         display: "standalone",

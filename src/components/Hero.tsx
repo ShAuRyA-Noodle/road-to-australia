@@ -35,7 +35,7 @@ export function Hero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mb-5 text-sm font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
-            The road to October 2027
+            The road to September 2028
           </motion.p>
 
           <motion.h1
@@ -46,7 +46,7 @@ export function Hero() {
           >
             Shaurya goes
             <br />
-            to <span className="text-[var(--color-accent)]">Germany.</span>
+            to <span className="text-[var(--color-accent)]">Canada.</span>
           </motion.h1>
 
           <motion.p
@@ -55,8 +55,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-md text-lg text-[var(--color-muted)]"
           >
-            One compass for the whole journey. Eleven universities, one year of honest
-            work, and a master's that pays for itself.
+            One compass for the whole journey. Eleven universities, French as the
+            PR key, and a master's that opens permanent residence.
           </motion.p>
 
           <motion.a
