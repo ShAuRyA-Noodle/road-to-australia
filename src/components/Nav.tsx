@@ -1,7 +1,6 @@
 import { Moon, Sun } from "@phosphor-icons/react";
 import { useTheme } from "../lib/storage";
 import { useCountry } from "../lib/CountryContext";
-import { COUNTRY_ORDER, COUNTRIES } from "../lib/countries";
 
 const LINKS = [
   { href: "#today", label: "Today" },
@@ -15,8 +14,7 @@ const LINKS = [
 
 export function Nav() {
   const { theme, toggle } = useTheme();
-  const { key, country, setCountry } = useCountry();
-  const label = country.label;
+  const label = useCountry().country.label;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
@@ -37,30 +35,13 @@ export function Nav() {
           ))}
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <div className="flex items-center rounded-full border p-0.5">
-            {COUNTRY_ORDER.map((k) => (
-              <button
-                key={k}
-                onClick={() => setCountry(k)}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-                  key === k
-                    ? "bg-[var(--color-accent)] text-white"
-                    : "text-[var(--color-muted)] hover:text-[var(--color-ink)]"
-                }`}
-              >
-                {COUNTRIES[k].label}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className="flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-[var(--color-accent)]"
-          >
-            {theme === "dark" ? <Sun size={16} weight="bold" /> : <Moon size={16} weight="bold" />}
-          </button>
-        </div>
+        <button
+          onClick={toggle}
+          aria-label="Toggle theme"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors hover:border-[var(--color-accent)]"
+        >
+          {theme === "dark" ? <Sun size={16} weight="bold" /> : <Moon size={16} weight="bold" />}
+        </button>
       </nav>
     </header>
   );
