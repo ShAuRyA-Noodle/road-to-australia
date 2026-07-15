@@ -7,7 +7,7 @@ const CountryCtx = createContext<Ctx | null>(null);
 
 function initialKey(): CountryKey {
   const saved = localStorage.getItem("rtg-country") as CountryKey | null;
-  return saved && saved in COUNTRIES ? saved : "canada";
+  return saved && saved in COUNTRIES ? saved : "australia";
 }
 
 export function CountryProvider({ children }: { children: ReactNode }) {

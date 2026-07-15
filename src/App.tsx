@@ -11,6 +11,11 @@ import { Timeline } from "./components/Timeline";
 import { Marquee } from "./components/Marquee";
 import { Curriculum } from "./components/Curriculum";
 import { DsaTracker } from "./components/DsaTracker";
+import { CourseInfo } from "./components/CourseInfo";
+import { CostBreakdown } from "./components/CostBreakdown";
+import { PointsTable } from "./components/PointsTable";
+import { PrepGuide } from "./components/PrepGuide";
+import { JobPlaybook } from "./components/JobPlaybook";
 
 function AppInner() {
   const { country } = useCountry();
@@ -20,7 +25,12 @@ function AppInner() {
       <main>
         <Hero />
         <DailyRituals />
+        <CourseInfo />
+        <CostBreakdown />
         <Universities />
+        <PointsTable />
+        <PrepGuide />
+        <JobPlaybook />
         <DsaTracker />
         <Curriculum />
         <Marquee />

@@ -9,7 +9,7 @@ import { App } from "./App";
 const saved = localStorage.getItem("rtg-theme");
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 document.documentElement.dataset.theme = saved ?? (prefersDark ? "dark" : "light");
-document.documentElement.dataset.country = localStorage.getItem("rtg-country") ?? "canada";
+document.documentElement.dataset.country = localStorage.getItem("rtg-country") ?? "australia";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -5,10 +5,11 @@ import { COUNTRY_ORDER, COUNTRIES } from "../lib/countries";
 
 const LINKS = [
   { href: "#today", label: "Today" },
-  { href: "#universities", label: "The Eleven" },
-  { href: "#grind", label: "Grind" },
-  { href: "#curriculum", label: "Arsenal" },
-  { href: "#checklist", label: "Paperwork" },
+  { href: "#course", label: "Course" },
+  { href: "#fees", label: "Fees" },
+  { href: "#universities", label: "Unis" },
+  { href: "#points", label: "Points" },
+  { href: "#prepare", label: "Prepare" },
   { href: "#timeline", label: "Route" },
 ];
 
