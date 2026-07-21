@@ -6,22 +6,18 @@ import { useLocalStorage } from "../lib/storage";
 import { Reveal, SectionHead } from "./Reveal";
 
 const VERDICT_COLOR: Record<Verdict, string> = {
-  Do: "var(--color-accent)",
-  Later: "#C98A2B",
-  Skip: "#9A8C92",
+  Core: "var(--color-accent)",
+  Edge: "#2f7db8",
+  Quick: "#4c9a6a",
+  Revise: "#C98A2B",
+  Later: "#7c8aa0",
+  Parked: "#9a9a9a",
+  Skip: "#b5aeae",
   Done: "#3F8F6B",
 };
 
 type Filter = "All" | Verdict | "Redundant";
-const FILTERS: Filter[] = ["All", "Do", "Later", "Done", "Skip", "Redundant"];
-const FILTER_LABEL: Record<Filter, string> = {
-  All: "Everything",
-  Do: "Do now",
-  Later: "Later",
-  Done: "Done",
-  Skip: "Skip",
-  Redundant: "Redundant",
-};
+const FILTERS: Filter[] = ["All", "Core", "Edge", "Quick", "Revise", "Later", "Parked", "Skip", "Done", "Redundant"];
 
 export function Curriculum() {
   const [filter, setFilter] = useState<Filter>("All");
@@ -30,18 +26,22 @@ export function Curriculum() {
 
   const counts: Record<Filter, number> = {
     All: COURSES.length,
-    Do: COURSES.filter((c) => c.verdict === "Do").length,
+    Core: COURSES.filter((c) => c.verdict === "Core").length,
+    Edge: COURSES.filter((c) => c.verdict === "Edge").length,
+    Quick: COURSES.filter((c) => c.verdict === "Quick").length,
+    Revise: COURSES.filter((c) => c.verdict === "Revise").length,
     Later: COURSES.filter((c) => c.verdict === "Later").length,
-    Done: COURSES.filter((c) => c.verdict === "Done").length,
+    Parked: COURSES.filter((c) => c.verdict === "Parked").length,
     Skip: COURSES.filter((c) => c.verdict === "Skip").length,
+    Done: COURSES.filter((c) => c.verdict === "Done").length,
     Redundant: COURSES.filter((c) => c.redundant).length,
   };
 
   const matches = (c: (typeof COURSES)[number]) =>
     filter === "All" ? true : filter === "Redundant" ? !!c.redundant : c.verdict === filter;
 
-  // progress counts only what is worth doing: Do + Later, plus already Done
-  const worth = COURSES.filter((c) => c.verdict !== "Skip");
+  // progress = the buckets worth doing (excludes Parked + Skip)
+  const worth = COURSES.filter((c) => c.verdict !== "Skip" && c.verdict !== "Parked");
   const doneCount = worth.filter((c) => done[c.id] || c.verdict === "Done").length;
   const pct = Math.round((doneCount / worth.length) * 100);
 
@@ -50,8 +50,8 @@ export function Curriculum() {
       <div className="mx-auto max-w-[1400px]">
         <SectionHead
           eyebrow="The arsenal"
-          title="Every link, nothing cut"
-          lead={`All ${COURSES.length} resources you sent are here, split by track. Duplicates and overlaps are kept and flagged, not removed. Tap Redundant to cluster them.`}
+          title="Every link, sorted to plan"
+          lead={`All ${COURSES.length} resources you gathered, in 8 buckets. Core = do now. Edge = after. Revise = brush up. Later = optional. Parked = watch-later. Skip = dead. Nothing deleted.`}
         />
 
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
@@ -62,13 +62,13 @@ export function Curriculum() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
                     active
                       ? "border-transparent bg-[var(--color-ink)] text-[var(--color-bg)]"
                       : "hover:border-[var(--color-accent)]"
                   }`}
                 >
-                  {FILTER_LABEL[f]}
+                  {f === "All" ? "Everything" : f}
                   {f !== "All" && <span className="ml-1.5 opacity-60">{counts[f]}</span>}
                 </button>
               );
@@ -122,11 +122,7 @@ export function Curriculum() {
                           </button>
 
                           <div className="min-w-0 flex-1">
-                            <div
-                              className={`truncate text-sm font-medium ${
-                                checked ? "text-[var(--color-muted)]" : ""
-                              }`}
-                            >
+                            <div className={`truncate text-sm font-medium ${checked ? "text-[var(--color-muted)]" : ""}`}>
                               {c.label}
                             </div>
                             <div className="flex items-center gap-2">
@@ -137,9 +133,7 @@ export function Curriculum() {
                                 </span>
                               )}
                               {c.note && !c.redundant && (
-                                <span className="truncate text-xs text-[var(--color-muted)]">
-                                  {c.note}
-                                </span>
+                                <span className="truncate text-xs text-[var(--color-muted)]">{c.note}</span>
                               )}
                             </div>
                           </div>
@@ -148,7 +142,7 @@ export function Curriculum() {
                             className="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium text-white"
                             style={{ background: VERDICT_COLOR[c.verdict] }}
                           >
-                            {c.verdict === "Do" ? "Do now" : c.verdict}
+                            {c.verdict}
                           </span>
 
                           {c.url ? (
