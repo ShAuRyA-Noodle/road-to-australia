@@ -4,8 +4,8 @@ import { useCountry } from "../lib/CountryContext";
 
 const LINKS = [
   { href: "#today", label: "Today" },
+  { href: "#grind", label: "Grind" },
   { href: "#course", label: "Course" },
-  { href: "#fees", label: "Fees" },
   { href: "#universities", label: "Unis" },
   { href: "#points", label: "Points" },
   { href: "#prepare", label: "Prepare" },
