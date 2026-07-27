@@ -12,7 +12,7 @@ const LINKS = [
   { href: "#timeline", label: "Route" },
 ];
 
-export function Nav() {
+export function Nav({ onArsenal }: { onArsenal: () => void }) {
   const { theme, toggle } = useTheme();
   const label = useCountry().country.label;
 
@@ -35,13 +35,21 @@ export function Nav() {
           ))}
         </div>
 
-        <button
-          onClick={toggle}
-          aria-label="Toggle theme"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors hover:border-[var(--color-accent)]"
-        >
-          {theme === "dark" ? <Sun size={16} weight="bold" /> : <Moon size={16} weight="bold" />}
-        </button>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            onClick={onArsenal}
+            className="rounded-full border px-3.5 py-1.5 text-sm font-medium text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-ink)]"
+          >
+            Arsenal
+          </button>
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-[var(--color-accent)]"
+          >
+            {theme === "dark" ? <Sun size={16} weight="bold" /> : <Moon size={16} weight="bold" />}
+          </button>
+        </div>
       </nav>
     </header>
   );

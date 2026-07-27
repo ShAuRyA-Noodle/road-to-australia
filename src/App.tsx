@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
 import { useReducedMotion } from "motion/react";
+import { ArrowLeft } from "@phosphor-icons/react";
 import { CountryProvider, useCountry } from "./lib/CountryContext";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
@@ -19,24 +20,48 @@ import { JobPlaybook } from "./components/JobPlaybook";
 
 function AppInner() {
   const { country } = useCountry();
+  const [view, setView] = useState<"main" | "arsenal">("main");
+
+  const goArsenal = () => {
+    setView("arsenal");
+    window.scrollTo(0, 0);
+  };
+  const goMain = () => {
+    setView("main");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div id="top" className="grain min-h-[100dvh]">
-      <Nav />
-      <main>
-        <Hero />
-        <DailyRituals />
-        <CourseInfo />
-        <CostBreakdown />
-        <Universities />
-        <PointsTable />
-        <PrepGuide />
-        <JobPlaybook />
-        <DsaTracker />
-        <Curriculum />
-        <Marquee />
-        <Checklist />
-        <Timeline />
-      </main>
+      <Nav onArsenal={goArsenal} />
+      {view === "arsenal" ? (
+        <main className="pt-28">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+            <button
+              onClick={goMain}
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:border-[var(--color-accent)]"
+            >
+              <ArrowLeft weight="bold" size={16} /> Back to the journey
+            </button>
+          </div>
+          <Curriculum />
+        </main>
+      ) : (
+        <main>
+          <Hero />
+          <DailyRituals />
+          <DsaTracker />
+          <PrepGuide />
+          <JobPlaybook />
+          <CourseInfo />
+          <CostBreakdown />
+          <Universities />
+          <PointsTable />
+          <Marquee />
+          <Checklist />
+          <Timeline />
+        </main>
+      )}
       <footer className="border-t px-6 py-14 text-center md:px-10">
         <p className="font-display text-2xl">{country.footerLine}</p>
         <p className="mt-2 text-sm text-[var(--color-muted)]">

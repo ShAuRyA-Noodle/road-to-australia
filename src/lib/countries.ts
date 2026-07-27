@@ -43,10 +43,12 @@ const australia: CountryData = {
   journeyStart: "2026-06-05",
   currencyNote: "AUD 1 is about Rs 55",
   rituals: [
-    { id: "pte", label: "PTE / IELTS Superior", target: "1.5h, sacred. 79+ / 8 = +20 PR points", accentHours: 1.5 },
-    { id: "dsa", label: "DSA", target: "2 to 2.5h, solve by hand", accentHours: 2.5 },
-    { id: "system", label: "System Design", target: "1h, design then compare", accentHours: 1 },
-    { id: "courses", label: "Courses", target: "3 to 5h, fast watch", accentHours: 4 },
+    { id: "dsa", label: "DSA", target: "2h, solve by hand. The #1 job lever", accentHours: 2 },
+    { id: "projects", label: "Project Study", target: "rebuild + defend your own code", accentHours: 1.5 },
+    { id: "fundamentals", label: "CS Fundamentals", target: "OS / DBMS / CN / OOP", accentHours: 1 },
+    { id: "system", label: "System Design", target: "basics, 2x per week", accentHours: 1 },
+    { id: "french", label: "French", target: "30 min. The Canada PR key", accentHours: 0.5 },
+    { id: "ielts", label: "IELTS", target: "until the July exam", accentHours: 1 },
   ],
   universities: [
     { id: "melbourne", name: "Melbourne (Go8)", program: "Master of CS", tier: "Reach", tuition: "~AUD 50k/yr", deadline: "Feb / Jul intake", note: "#1 in Australia. World top ~15." },
